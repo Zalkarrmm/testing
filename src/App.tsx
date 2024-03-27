@@ -1,14 +1,13 @@
 import './App.css';
-import { getData } from './jest/getData/getData';
 
 
 function App() {
-  getData('users').then(res => {
-    console.log(res, 'res')
-  })
   return (
     <div className="App">
-
+      React app
+      <a href="https://google.com">Link to google</a>
+      <button>Click me</button>
+      <input type="text" placeholder='input text...'/>
     </div>
   );
 }
