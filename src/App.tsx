@@ -1,5 +1,5 @@
 import './App.css';
-import { getData } from './getData/getData';
+import { getData } from './jest/getData/getData';
 
 
 function App() {
