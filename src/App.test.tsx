@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import App from './App';
+import userEvent from "@testing-library/user-event";
 
 describe('React app test', () => {
   test('app page render', () => {
@@ -42,15 +43,27 @@ describe('React app test', () => {
     expect(screen.queryByTestId('toggle-elem')).toBeNull()
   })
 
+  // test('Input event', () => {
+  //   render(<App />)
+  //   const input = screen.getByPlaceholderText('input text...')
+  //   expect(screen.getByTestId('value-elem')).toContainHTML('')
+  //   fireEvent.change(input, {
+  //     target: {
+  //       value: 'Hello'
+  //     }
+  //   })
+  //   expect(screen.getByTestId('value-elem')).toContainHTML('Hello')
+  // })
   test('Input event', () => {
     render(<App />)
     const input = screen.getByPlaceholderText('input text...')
     expect(screen.getByTestId('value-elem')).toContainHTML('')
-    fireEvent.change(input, {
-      target: {
-        value: 'Hello'
-      }
-    })
+    // fireEvent.change(input, { // Simulating Events
+    //   target: {
+    //     value: 'Hello'
+    //   }
+    // })
+    userEvent.type(input, 'Hello') //Близко к пользовател, обрабатываются события нажатия клавиш и тд 
     expect(screen.getByTestId('value-elem')).toContainHTML('Hello')
   })
 })

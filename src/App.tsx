@@ -9,7 +9,6 @@ function App() {
 
   const onClick = () => setToggle(prev => !prev)
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,7 +42,9 @@ function App() {
       >
           Click me
       </button>
-      <input onChange={onChange} type="text" value={value} placeholder='input text...'/>
+      <input onChange={(e) => {
+        setValue(e.target.value)
+      }} type="text" value={value} placeholder='input text...'/>
       <span data-testid="value-elem">{value}</span>
     </div>
   );
