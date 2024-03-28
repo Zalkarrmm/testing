@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import App from './App';
 
 describe('React app test', () => {
@@ -21,5 +21,36 @@ describe('React app test', () => {
     expect(btn).toBeInTheDocument()
     expect(input).toBeInTheDocument()
     expect(input).toMatchSnapshot()
+  })
+
+  test('Renders a hello world', async () => {
+    render(<App />)
+    // const helloWorldElem = screen.queryByText(/hello2/i)
+    // expect(helloWorldElem).toBeNull()
+    const helloWorldElem = await screen.findByText(/data/i)
+    expect(helloWorldElem).toBeInTheDocument()
+    expect(helloWorldElem).toHaveStyle({color: 'red'})
+  })
+
+  test('Click toggle event', () => {
+    render(<App />)
+    const btn = screen.getByTestId('toggle-btn')
+    expect(screen.queryByTestId('toggle-elem')).toBeNull()
+    fireEvent.click(btn, {})
+    expect(screen.getByTestId('toggle-elem')).toBeInTheDocument()
+    fireEvent.click(btn, {})
+    expect(screen.queryByTestId('toggle-elem')).toBeNull()
+  })
+
+  test('Input event', () => {
+    render(<App />)
+    const input = screen.getByPlaceholderText('input text...')
+    expect(screen.getByTestId('value-elem')).toContainHTML('')
+    fireEvent.change(input, {
+      target: {
+        value: 'Hello'
+      }
+    })
+    expect(screen.getByTestId('value-elem')).toContainHTML('Hello')
   })
 })

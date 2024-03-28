@@ -4,6 +4,7 @@ exports[`React app test app 1`] = `
 <input
   placeholder="input text..."
   type="text"
+  value=""
 />
 `;
 
@@ -11,12 +12,6 @@ exports[`React app test app page render 1`] = `
 <input
   placeholder="input text..."
   type="text"
-/>
-`;
-
-exports[`react app render 1`] = `
-<input
-  placeholder="input text..."
-  type="text"
+  value=""
 />
 `;
